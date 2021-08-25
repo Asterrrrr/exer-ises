@@ -7,6 +7,7 @@ def is_valid(st):
 
 def guess_num(num):
     flag = False
+    attempts = 1
     answer = randrange(1, 101)
     while flag == False:
         if is_valid(num) == False:
@@ -14,11 +15,19 @@ def guess_num(num):
         else:
             if int(num) > answer:
                 num = input('Слишком много, попробуйте еще раз: ')
+                attempts += 1
             elif int(num) < answer:
                 num = input('Слишком мало, попробуйте еще раз: ')
+                attempts += 1
             elif int(num) == answer:
-                print('Вы угадали, поздравляем!')
+                print('Вы угадали c ' + str(attempts) + ' попыток, поздравляем!')
                 flag = True
+    again = input('Хочешь сыграть еще? "да" или "нет": ')
+    if again == 'да':
+        num = input('Попробуй угадать быстрее чем за ' + str(attempts) + ' попыток: ')
+        return guess_num(num)
+    elif again == 'нет':
+        print('Штош, возвращайся как-нибудь! Удачи!')
 
 number = input('Угадай число от 1 до 100: ')
 guess_num(number)
