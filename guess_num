@@ -1,0 +1,24 @@
+from random import randrange
+def is_valid(st):
+    if st.isdigit() == True and 1 <= int(st) <= 100:
+        return True
+    else:
+        return False
+
+def guess_num(num):
+    flag = False
+    answer = randrange(1, 101)
+    while flag == False:
+        if is_valid(num) == False:
+            num = input('Это не то. Число в пределах от 1 до 100. Попробуй еще раз: ')
+        else:
+            if int(num) > answer:
+                num = input('Слишком много, попробуйте еще раз: ')
+            elif int(num) < answer:
+                num = input('Слишком мало, попробуйте еще раз: ')
+            elif int(num) == answer:
+                print('Вы угадали, поздравляем!')
+                flag = True
+
+number = input('Угадай число от 1 до 100: ')
+guess_num(number)
